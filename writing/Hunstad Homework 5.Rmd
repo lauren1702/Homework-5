@@ -43,18 +43,21 @@ homicidecounts$season <- ifelse(homicidecounts$month %in% c("Nov", "Dec", "Jan",
 ## Graph the data
 
 ```{r}
-ggplot(homicidecounts) + 
-  geom_col(aes(x = date, y = row_count, fill = season)) +
-  scale_fill_manual(values = c("Winter" = "lightgray", "Summer" = "lightblue")) +
-  scale_x_date(date_breaks = "1 year") +
+ggplot(homicidecounts, aes(x = date, y = row_count)) + 
+  geom_col(aes(fill = season)) +
+  scale_fill_manual(values = c("Winter" = "lightblue", "Summer" = "lightgray")) +
+  scale_x_date(date_breaks = "2 years", date_labels = "%Y") +
+  geom_smooth(aes(group = 1), method = "loess", span = 0.1, se = FALSE) +
+  geom_vline(xintercept = as.Date("2015-04-01"), 
+             linetype = "dashed", 
+             color = "red", 
+             linewidth = 1) +
   labs(y = "Monthly homicides",
-       x = "Date") +
+       x = "Date",
+       fill = NULL) +
   ggtitle("Homicides in Baltimore, MD") +
-  theme_dark()
+  theme_dark() +
+  theme(legend.position = "bottom")
 
 ```
-
-
-
-
 
