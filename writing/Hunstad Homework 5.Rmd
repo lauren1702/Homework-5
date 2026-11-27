@@ -27,9 +27,8 @@ homicides <- homicides %>% mutate(city_name = paste(city, state, sep = ", ")) %>
   mutate(reported_date = ymd(reported_date)) %>% 
   mutate(year = year(reported_date), month = month(reported_date, label = TRUE))
 
-homicidecounts <- homicides %>% count(year, month, name = "row_count")
-
-homicidecounts <- homicidecounts %>% mutate(date = paste(month, year, sep = " "))
+homicidecounts <- homicides %>% count(year, month, name = "row_count") %>% 
+  mutate(date = paste(month, year, sep = " "))
 
 homicidecounts$date <- my(homicidecounts$date)
 
