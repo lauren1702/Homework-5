@@ -21,15 +21,11 @@ I am choosing option 2 for the homework and recreate the graph of homicide data.
 ```{r}
 homicides <- read.csv("homicide-data.csv")
 
-homicides <- homicides %>% mutate(city_name = paste(city, state, sep = ", "))
-
-homicides <- homicides %>% select(-lat, -lon, -city, -state)
-
-homicides <- homicides %>% filter(city_name == "Baltimore, MD")
-
-homicides <- homicides %>% mutate(reported_date = ymd(reported_date))
-
-homicides <- homicides %>% mutate(year = year(reported_date), month = month(reported_date, label = TRUE))
+homicides <- homicides %>% mutate(city_name = paste(city, state, sep = ", ")) %>% 
+  select(-lat, -lon, -city, -state) %>% 
+  filter(city_name == "Baltimore, MD") %>% 
+  mutate(reported_date = ymd(reported_date)) %>% 
+  mutate(year = year(reported_date), month = month(reported_date, label = TRUE))
 
 homicidecounts <- homicides %>% count(year, month, name = "row_count")
 
