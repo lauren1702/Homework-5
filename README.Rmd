@@ -9,8 +9,6 @@ output: word_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
-
 ## Data Set Background
 
 This data was collected by the Washington Post, and is collected information about homicides in large cities. The data set includes information about arrests, locations, etc of each crime included in the data set.
