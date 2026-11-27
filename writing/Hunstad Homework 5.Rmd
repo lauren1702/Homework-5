@@ -47,6 +47,14 @@ ggplot(homicidecounts, aes(x = date, y = row_count)) +
              linetype = "dashed", 
              color = "red", 
              linewidth = 1) +
+  annotate("text",
+    x = as.Date("2015-04-01"),
+    y = max(homicidecounts$row_count, na.rm = TRUE),
+    label = "Arrest of 
+Freddie Gray",
+    color = "white",
+    hjust = 1.1,
+    vjust = 1) +
   labs(y = "Monthly homicides",
        x = "Date",
        fill = NULL) +
