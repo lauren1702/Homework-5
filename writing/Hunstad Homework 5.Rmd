@@ -32,15 +32,23 @@ homicides <- homicides %>% mutate(reported_date = ymd(reported_date))
 homicides <- homicides %>% mutate(year = year(reported_date), month = month(reported_date, label = TRUE))
 
 homicidecounts <- homicides %>% count(year, month, name = "row_count")
+
+homicidecounts <- homicidecounts %>% mutate(date = paste(month, year, sep = " "))
+
+homicidecounts$season <- ifelse(homicidecounts$month %in% c("Nov", "Dec", "Jan", "Feb", "Mar", "Apr"), "Winter", "Summer")
 ```
 
 ## Graph the data
 
 ```{r}
 ggplot(homicidecounts) + 
+  geom_col(aes(x = date, y = row_count)) +
+  labs(y = "Monthly homicides",
+       x = "Date") +
+  ggtitle("Homicides in Baltimore, MD") +
+  theme_dark()
 
 ```
-
 
 
 
