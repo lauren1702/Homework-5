@@ -34,6 +34,15 @@ homicides <- homicides %>% mutate(year = year(reported_date), month = month(repo
 homicidecounts <- homicides %>% count(year, month, name = "row_count")
 ```
 
+## Graph the data
+
+```{r}
+ggplot(homicidecounts) + 
+
+```
+
+
+
 
 
 
